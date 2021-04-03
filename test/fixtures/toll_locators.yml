@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  coor_lat: 1.5
+  coor_lng: 1.5
+
+two:
+  coor_lat: 1.5
+  coor_lng: 1.5

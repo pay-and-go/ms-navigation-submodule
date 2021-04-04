@@ -39,3 +39,6 @@ gem 'mongoid', '~> 7.0.5'
 
 # Webpacker
 gem 'webpacker', '~> 3.0'
+
+#Enviromental variables
+gem 'dotenv-rails', groups: [:development, :test]

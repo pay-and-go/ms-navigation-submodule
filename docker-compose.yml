@@ -1,0 +1,23 @@
+version: '3'
+services:
+  mongodb:
+    image: mongo
+    ports:
+      - "27017:27017"
+    environment:
+      DBNAME: TollSubmodule
+      DBUSER: administrator
+      DBPASS: administratorPayAndGo123
+  web:
+    build: .
+    depends_on:
+      - mongodb
+    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    volumes:
+      - .:/ms-navigation-submodule
+    ports:
+      - 3000:3000
+    environment:
+      DBNAME: TollSubmodule
+      DBUSER: administrator
+      DBPASS: administratorPayAndGo123

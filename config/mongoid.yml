@@ -5,10 +5,9 @@ development:
     default:
       # Defines the name of the default database that Mongoid can connect to.
       # (required).
-      # database: TollSubmodule
       # Provides the hosts the default client can connect to. Must be an array
       # of host:port pairs. (required)
-      uri: mongodb+srv://administrator:administratorPayAndGo123@cluster0.blmmt.mongodb.net/TollSubmodule?retryWrites=true&w=majority
+      uri: mongodb+srv://<%= ENV['DBUSER'] %>:<%= ENV['DBPASS'] %>@cluster0.blmmt.mongodb.net/<%= ENV['DBNAME'] %>?retryWrites=true&w=majority
       options:
         server_selection_timeout: 5
         # Note that all options listed below are Ruby driver client options (the mongo gem).

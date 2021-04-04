@@ -48,7 +48,8 @@ class TollLocatorsController < ApplicationController
     # puts "Test #{@tollsJson[0]["coor_lat"]}"
     # puts "Lat #@lat"
     # puts "Lng #@lng"
-    
+    puts "#{h[0][1]}"
+    @tollsJson[h[0][0]]["distance"] = h[0][1]
     render json: @tollsJson[h[0][0]]
 
     # if @toll_locator.save

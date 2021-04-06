@@ -12,11 +12,11 @@ services:
     build: .
     depends_on:
       - mongodb
-    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    command: bundle exec rails s -p 80 -b '0.0.0.0'
     volumes:
       - .:/ms-navigation-submodule
     ports:
-      - 3000:3000
+      - 80:80
     environment:
       DBNAME: TollSubmodule
       DBUSER: administrator

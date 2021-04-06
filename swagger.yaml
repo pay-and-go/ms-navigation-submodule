@@ -1,0 +1,178 @@
+swagger: "2.0"
+info:
+  description: "En este submódulo se encuentran todas las funcionalidades relacionadas a la navegación donde se podrá manejar la información referente a ella."
+  version: "1.0.0"
+  title: "Submódulo Navegación"
+  contact:
+    email: "jodorganistaca@unal.edu.co"
+host: "895.12.26.5.9"
+tags:
+- name: "Peajes"
+  description: "Lectura de Rutas"
+- name: "Localizador de Peajes"
+  description: "Consulta peaje cerca a una ubicación"
+schemes:
+- "http"
+
+paths:
+  /tolls:
+    get:
+      tags:
+      - "Peajes"
+      summary: "Consulta todos los peajes en la base de datos"
+      description: ""
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: object
+            properties:
+              tollId:
+                type: integer
+              administrator:
+                type: string
+              coor_lat:
+                type: number
+              coor_lng:
+                type: number
+              crane_phone_number:
+                type: string
+              name:
+                type: string
+              price:
+                type: integer
+              sector:
+                type: string
+              territory:
+                type: string
+              toll_phone_number:
+                type: string
+                
+  /tolls/{id}:
+    get:
+      tags:
+      - "Peajes"
+      summary: "Consulta el peaje con tollId = {id}"
+      description: ""
+      produces:
+      - "application/json"
+      parameters:
+      - name: id
+        in: path
+        description: tollId del peaje
+        required: true
+        type: integer
+        format: int64
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: object
+            properties:
+              tollId:
+                type: integer
+              administrator:
+                type: string
+              coor_lat:
+                type: number
+              coor_lng:
+                type: number
+              crane_phone_number:
+                type: string
+              name:
+                type: string
+              price:
+                type: integer
+              sector:
+                type: string
+              territory:
+                type: string
+              toll_phone_number:
+                type: string
+
+  /findToll:
+    post:
+      tags:
+      - "Localizador de Peajes"
+      summary: "Encuentra el peaje más cercano a una posición dada"
+      description: ""
+      consumes:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Objeto de ubicación donde se quiere hayar el peaje más cercano"
+        required: true
+        schema:
+          type: object
+          properties:
+            coor_lat:
+              type: integer
+            coor_lng:
+              type: integer
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: object
+            properties:
+              coor_lat:
+                type: integer
+              coor_lng:
+                type: integer
+              name:
+                type: string
+              distance:
+                type: integer
+          
+  /toll_locators:
+    get:
+      tags:
+      - "Localizador de Peajes"
+      summary: "Consulta los nombres y posiciones de los peajes"
+      description: ""
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: object
+            properties:
+              coor_lat:
+                type: integer
+              coor_lng:
+                type: integer
+              name:
+                type: string
+                  
+  /toll_locators/{id}:
+    get:
+      tags:
+      - "Localizador de Peajes"
+      summary: "Consulta los nombres y posiciones de los peajes por id"
+      description: ""
+      produces:
+      - "application/json"
+      parameters:
+      - name: id
+        in: path
+        description: tollId del peaje
+        required: true
+        type: integer
+        format: int64
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: object
+            properties:
+              coor_lat:
+                type: integer
+              coor_lng:
+                type: integer
+              name:
+                type: string
+

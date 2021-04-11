@@ -33,9 +33,9 @@ class TollLocatorsController < ApplicationController
   end
   # POST /toll_locators
   def create
-    @tolls = Toll.all
+    body = request.request_parameters
     @toll_locator = TollLocator.new(toll_locator_params)
-    @tollsJson = JSON.parse(@tolls.to_json(only: [:coor_lat, :coor_lng, :name, :tollId]))
+    @tollsJson = body["tolls"]
     @lat = @toll_locator.coor_lat
     @lng = @toll_locator.coor_lng
     hash = {}
@@ -44,13 +44,8 @@ class TollLocatorsController < ApplicationController
       hash[index] = d
     }
     h = hash.sort {|(k1, v1), (k2, v2)| v1 == v2 ? k1 <=> k2 : v1 <=> v2 }
-    # puts "#{h[0][0]}" 
-    # puts "Test #{@tollsJson[0]["coor_lat"]}"
-    # puts "Lat #@lat"
-    # puts "Lng #@lng"
-    puts "#{h[0][1]}"
     @tollsJson[h[0][0]]["distance"] = h[0][1]
-    render json: @tollsJson[h[0][0]]
+    render json: @tollsJson[h[0][0]].to_json(only: [:coor_lat, :coor_lng, :name, :tollId, :distance])
 
     # if @toll_locator.save
     #   render json: @toll_locator, status: :created, location: @toll_locator
